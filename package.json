@@ -1,0 +1,72 @@
+{
+	"name": "vue-svg-inline-component",
+	"version": "0.0.0",
+	"description": "Vue component for inline use of SVG files.",
+	"keywords": [
+		"vue",
+		"vuejs",
+		"component",
+		"vue-component",
+		"svg",
+		"inline",
+		"svg-inline",
+		"inline-svg",
+		"vue-svg-inline-component"
+	],
+	"homepage": "https://github.com/oliverfindl/vue-svg-inline-component#readme",
+	"bugs": {
+		"url": "https://github.com/oliverfindl/vue-svg-inline-component/issues"
+	},
+	"license": "MIT",
+	"author": "Oliver Findl",
+	"funding": "https://paypal.me/oliverfindl",
+	"files": [
+		"index.js",
+		"dist/*.min.js{,.map}",
+		"src/**/*.js"
+	],
+	"browser": "src/vue-svg-inline-component.js",
+	"unpkg": "dist/vue-svg-inline-component.min.js",
+	"jsdelivr": "dist/vue-svg-inline-component.min.js",
+	"directories": {
+		"example": "examples"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/oliverfindl/vue-svg-inline-component.git"
+	},
+	"scripts": {
+		"build": "npm run build:modern && npm run build:default",
+		"build:modern": "npm run remove:modern && npx webpack --env modern --progress --color",
+		"build:default": "npm run remove:default && npx webpack --progress --color",
+		"watch:modern": "npm run build:modern -- --watch",
+		"watch:default": "npm run build:default -- --watch",
+		"remove": "npm run remove:modern && npm run remove:default",
+		"remove:modern": "npx rimraf dist/vue-svg-inline-component-modern.min.js{,.map}",
+		"remove:default": "npx rimraf dist/vue-svg-inline-component.min.js{,.map}",
+		"fix:banner": "bash ./fix_banner.sh",
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"dependencies": {
+		"core-js": "^3.9.0",
+		"whatwg-fetch": "^3.6.1"
+	},
+	"devDependencies": {
+		"@babel/core": "^7.12.17",
+		"@babel/eslint-parser": "^7.12.17",
+		"@babel/preset-env": "^7.12.17",
+		"babel-loader": "^8.2.2",
+		"eslint": "^7.20.0",
+		"eslint-plugin-vue": "^7.6.0",
+		"eslint-webpack-plugin": "^2.5.2",
+		"rimraf": "^3.0.2",
+		"terser": "^5.6.0",
+		"terser-webpack-plugin": "^5.1.1",
+		"webpack": "^5.23.0",
+		"webpack-bundle-analyzer": "^4.4.0",
+		"webpack-cli": "^4.5.0"
+	},
+	"peerDependencies": {
+		"vue": "^3.0.0"
+	}
+}
