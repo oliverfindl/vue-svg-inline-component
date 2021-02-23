@@ -68,7 +68,7 @@ module.exports = ({ WEBPACK_WATCH, modern: MODERN_BUILD } = {}) => ({
 				.trim(),
 			entryOnly: true
 		}) ] : []),
-		...(!MODERN_BUILD ? [ new BundleAnalyzerPlugin() ] : []),
+		...(!WEBPACK_WATCH && !MODERN_BUILD ? [ new BundleAnalyzerPlugin() ] : []),
 		new ESLintPlugin({
 			files: [ "src/**/*.js" ],
 			emitError: true,
