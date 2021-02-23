@@ -1,6 +1,6 @@
 {
 	"name": "vue-svg-inline-component",
-	"version": "0.1.0",
+	"version": "0.1.1",
 	"description": "Vue component for inline use of SVG files.",
 	"keywords": [
 		"vue",
