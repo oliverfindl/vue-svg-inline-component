@@ -2,9 +2,10 @@
 
 import { createApp } from "vue";
 import App from "./App.vue";
-import VueSvgInlineComponent from "../../../src";
+import VueSvgInlineComponent from "vue-svg-inline-component";
+// import VueSvgInlineComponent from "../vue-svg-inline-component"; // symlink
 
-const app = createApp(App)
+const app = createApp(App);
 
 app.component("svg-inline", VueSvgInlineComponent);
 

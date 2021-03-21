@@ -34,7 +34,8 @@
 			</transition>
 		</main>
 		<script src="https://unpkg.com/vue@3"></script>
-		<script src="../../dist/vue-svg-inline-component-modern.min.js"></script>
+		<script src="https://unpkg.com/vue-svg-inline-component/dist/vue-svg-inline-component-modern.min.js"></script>
+		<!-- <script src="../../dist/vue-svg-inline-component-modern.min.js"></script> -->
 		<script>
 			"use strict";
 			const app = Vue.createApp({
@@ -42,9 +43,9 @@
 					const message = Vue.ref("");
 					const addClassSvgIconAndFillCurrentColor = svg => svg.replace(/(<svg)/, "$1 class='svg-icon'").replace(/(<path)/g, "$1 fill='currentColor'").replace(/<!--.*?-->/g, "");
 					const addDataSource = (svg, options, props) => svg.replace(/(<svg)/, `$1 data-source="${props.source}"`).replace(/<!--.*?-->/g, "");
-					const onMouseEnter = ({ target }) => message.value = target.querySelector("svg").dataset.source.split("/").pop();
-					const onMouseLeave = () => message.value = "";
-					const listeners = { onMouseEnter, onMouseLeave };
+					const onmouseenter = ({ target }) => message.value = target.querySelector("svg").dataset.source.split("/").pop();
+					const onmouseleave = () => message.value = "";
+					const listeners = { onmouseenter, onmouseleave };
 					const logos = [
 						{ source: "logo.svg", attributes: { class: "vue-logo", style: "background: #eee;" } },
 						{ source: "logo-monochrome.svg", attributes: { class: "vue-logo-black", style: "background: #42b883;" } },
