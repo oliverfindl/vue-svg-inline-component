@@ -22,7 +22,7 @@ const DEFAULT_ATTRIBUTES = { class: PACKAGE_NAME };
 
 const REGEXP_SVG_FILENAME = /\.svg(?:[?#].*)?$/i;
 
-const validateSvgFilename = filename => !!filename && REGEXP_SVG_FILENAME.test(filename);
+const validateSvgFilename = filename => typeof filename === "string" && filename !== "" ? REGEXP_SVG_FILENAME.test(filename) : true;
 
 window[WINDOW_CACHE_ID] = window[WINDOW_CACHE_ID] || new Map;
 
@@ -104,7 +104,7 @@ export default WINDOW_VUE_VERSION && !WINDOW_VUE_VERSION.startsWith("3.") ? cons
 
 		const emitError = error => {
 			if(canEmitError.value) emit(EVENTS[1], error);
-			if(canLogError.value && console.error) console.error(`[${PACKAGE_NAME}] ${error}`); // eslint-disable-line no-console
+			if(canLogError.value) console.error(`[${PACKAGE_NAME}] ${error}`); // eslint-disable-line no-console
 		};
 
 		const emitUpdate = () => {
@@ -123,7 +123,6 @@ export default WINDOW_VUE_VERSION && !WINDOW_VUE_VERSION.startsWith("3.") ? cons
 				.then(response => {
 					if(canUseCache.value && !window[WINDOW_CACHE_ID].has(source.value)) window[WINDOW_CACHE_ID].set(source.value, response);
 					svg.value = transformFunction.value ? transformFunction.value.call(null, response, transformFunctionOptions.value, props) : response;
-					emitUpdate();
 				})
 				.catch(emitError);
 		};
@@ -131,6 +130,7 @@ export default WINDOW_VUE_VERSION && !WINDOW_VUE_VERSION.startsWith("3.") ? cons
 		onMounted(() => {
 			fetchSvg();
 			watch([ source, fetchOptions, transformFunction, transformFunctionOptions ], fetchSvg);
+			watch(svg, emitUpdate);
 		});
 
 		return { svg };
